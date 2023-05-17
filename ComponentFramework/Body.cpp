@@ -17,13 +17,11 @@ void Body::ApplyForce(Vec3 force) {
 void Body::UpdateOrientation(float deltaTime)
 {
 	float angleRadians = VMath::mag(angularVel) * deltaTime;
-	if (angleRadians < VERY_SMALL)
-	{
-		return;
-	}
+	float angleDegrees = angleRadians * RADIANS_TO_DEGREES;
+	if (angleRadians < VERY_SMALL) return;
 	Vec3 axisOfRotation = VMath::normalize(angularVel);
 
-	Quaternion rotationQuaternion = QMath::angleAxisRotation(angleRadians * RADIANS_TO_DEGREES, axisOfRotation);
+	Quaternion rotationQuaternion = QMath::angleAxisRotation(angleDegrees, axisOfRotation);
 	orientation = rotationQuaternion * orientation; // TODO: figure out the order of multiplication
 }
 

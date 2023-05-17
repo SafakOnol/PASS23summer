@@ -33,6 +33,14 @@ public:
 	void OnDestroy();
 	void Update(float deltaTime);
 	void Render() const;
+
+	// Physics
+
+	// Update Methods
+
+	// Utility
+
+
 	void ApplyForce(Vec3 force);
 	void setAccel(const Vec3 &accel_) { accel = accel_;}
 	void UpdateOrientation(float deltaTime);

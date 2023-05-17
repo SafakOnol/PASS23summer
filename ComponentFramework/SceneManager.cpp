@@ -3,7 +3,11 @@
 #include "Timer.h"
 #include "Window.h"
 #include "Scene0.h"
+#include "Scene1g.h"
 #include "Scene1p.h"
+#include "Scene2g.h"
+#include "Scene2p.h"
+
 
 SceneManager::SceneManager(): 
 	currentScene{nullptr}, window{nullptr}, timer{nullptr},
@@ -47,7 +51,7 @@ bool SceneManager::Initialize(std::string name_, int width_, int height_) {
 	}
 
 	/********************************   Default first scene   ***********************/
-	BuildNewScene(SCENE_NUMBER::SCENE1P);
+	BuildNewScene(SCENE_NUMBER::SCENE2G);
 	/********************************************************************************/
 	return true;
 }
@@ -84,6 +88,7 @@ void SceneManager::HandleEvents() {
 				
 
 			case SDL_SCANCODE_F1:
+				break;
 			case SDL_SCANCODE_F2:
 			case SDL_SCANCODE_F3:
 			case SDL_SCANCODE_F4:
@@ -125,30 +130,32 @@ bool SceneManager::BuildNewScene(SCENE_NUMBER scene) {
 		status = currentScene->OnCreate();
 		break;
 
-	/*case SCENE_NUMBER::SCENE1G:
-		currentScene = new Scene1p();
+	case SCENE_NUMBER::SCENE1G:
+		currentScene = new Scene1g();
 		status = currentScene->OnCreate();
-		break;*/
+		break;
 
-	/*case SCENE_NUMBER::SCENE2P:
-		currentScene = new Scene1p();
+	case SCENE_NUMBER::SCENE2G:
+		currentScene = new Scene2g();
 		status = currentScene->OnCreate();
-		break;*/
+		break;
 
-	/*case SCENE_NUMBER::SCENE2G:
-		currentScene = new Scene1p();
+	case SCENE_NUMBER::SCENE2P:
+		currentScene = new Scene2p();
+		status = currentScene->OnCreate();
+		break;
+
+	/*case SCENE_NUMBER::SCENE3G:
+		currentScene = new Scene3g();
 		status = currentScene->OnCreate();
 		break;*/
 
 	/*case SCENE_NUMBER::SCENE3P:
-		currentScene = new Scene1p();
+		currentScene = new Scene3p();
 		status = currentScene->OnCreate();
 		break;*/
 
-	/*case SCENE_NUMBER::SCENE3G:
-		currentScene = new Scene1p();
-		status = currentScene->OnCreate();
-		break;*/
+
 
 	default:
 		Debug::Error("Incorrect scene number assigned in the manager", __FILE__, __LINE__);

@@ -14,12 +14,18 @@ class Shader;
 class Scene1p : public Scene {
 private:
 	Body* sphere;
+	Body* cube;
 	Shader* shader;
-	Mesh* mesh;
+	Mesh* meshSphere;
+	Mesh* meshCube;
 	Matrix4 projectionMatrix;
 	Matrix4 viewMatrix;
 	Matrix4 modelMatrix;
+	Matrix4 modelMatrixPlatform1;
+	Matrix4 modelMatrixPlatform2;
+	Matrix4 modelMatrixPlatform3;
 	bool drawInWireMode;
+	float platformAngleDegrees = 25.0f;
 
 public:
 	explicit Scene1p();
