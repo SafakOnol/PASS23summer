@@ -26,7 +26,7 @@ bool Scene1g::OnCreate() {
 	mesh = new Mesh("meshes/Sphere.obj");
 	mesh->OnCreate();
 
-	shader = new Shader("shaders/phongVert.glsl", "shaders/phongFrag.glsl");
+	shader = new Shader("shaders/multiLightPhongVert.glsl", "shaders/multiLightPhongFrag.glsl");
 	if (shader->OnCreate() == false) {
 		std::cout << "Shader failed ... we have a problem\n";
 	}
@@ -34,7 +34,8 @@ bool Scene1g::OnCreate() {
 	projectionMatrix = MMath::perspective(45.0f, (16.0f / 9.0f), 0.5f, 100.0f);
 	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 7.5f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 1.0f, 0.0f));
 	modelMatrix.loadIdentity();
-	lightPos = Vec3(8.0f, 4.0f, 0.0f);
+	lightPos0 = Vec3(8.0f, 4.0f, 0.0f);
+	lightPos1 = Vec3(-8.0f, 4.0f, 0.0f);
 	return true;
 }
 
@@ -102,7 +103,9 @@ void Scene1g::Render() const {
 	glUniformMatrix4fv(shader->GetUniformID("projectionMatrix"), 1, GL_FALSE, projectionMatrix);
 	glUniformMatrix4fv(shader->GetUniformID("viewMatrix"), 1, GL_FALSE, viewMatrix);
 	glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, modelMatrix);
-	glUniform3fv(shader->GetUniformID("lightPos"), 1, lightPos);
+
+	glUniform3fv(shader->GetUniformID("lightPos0"), 1, lightPos0);
+	glUniform3fv(shader->GetUniformID("lightPos1"), 1, lightPos1);
 	mesh->Render(GL_TRIANGLES);
 	glUseProgram(0);
 }

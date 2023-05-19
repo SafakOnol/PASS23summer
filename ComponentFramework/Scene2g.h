@@ -16,12 +16,16 @@ class Texture;
 class Scene2g : public Scene {
 private:
 	Body* sphere;
+	Body* earth;
+	Body* moon;
 	Shader* shader;
 	Mesh* mesh;
-	Texture* texture;
+	Texture* textureEarth;
+	Texture* textureMoon;
 	Matrix4 projectionMatrix;
 	Matrix4 viewMatrix;
-	Matrix4 modelMatrix;
+	Matrix4 modelMatrixEarth;
+	Matrix4 modelMatrixMoon;
 	bool drawInWireMode;
 	Vec3 lightPos;
 

@@ -20,7 +20,8 @@ private:
 	Matrix4 viewMatrix;
 	Matrix4 modelMatrix;
 	bool drawInWireMode;
-	Vec3 lightPos;
+	Vec3 lightPos0;
+	Vec3 lightPos1;
 
 public:
 	explicit Scene1g();

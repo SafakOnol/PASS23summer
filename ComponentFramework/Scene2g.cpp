@@ -13,7 +13,8 @@ Scene2g::Scene2g() :
 	sphere{nullptr}, 
 	shader{nullptr},
 	mesh{nullptr},
-	texture{nullptr},
+	textureEarth{nullptr},
+	textureMoon{nullptr},
 	drawInWireMode{false} 
 {
 	Debug::Info("Created Scene2g: ", __FILE__, __LINE__);
@@ -28,6 +29,14 @@ bool Scene2g::OnCreate() {
 	sphere = new Body();
 	sphere->OnCreate();
 	sphere->angularVel = Vec3(0.0f, 0.0f, -1.0f);
+
+	//earth = new Body();
+	//earth->OnCreate();
+	//earth->angularVel = Vec3(0.0f, 0.0f, -1.0f);
+
+	//moon = new Body();
+	//moon->OnCreate();
+	////moon->angularVel = Vec3(0.0f, 0.0f, -1.0f);
 	
 	mesh = new Mesh("meshes/Sphere.obj");
 	mesh->OnCreate();
@@ -37,12 +46,19 @@ bool Scene2g::OnCreate() {
 		std::cout << "Shader failed ... we have a problem\n";
 	}
 
-	texture = new Texture();
-	texture->LoadImage("textures/earthclouds.jpg");
+	textureEarth = new Texture();
+	textureEarth->LoadImage("textures/evilEye.jpg");
+
+	textureMoon = new Texture();
+	textureMoon->LoadImage("textures/moon.jpg");
 
 	projectionMatrix = MMath::perspective(45.0f, (16.0f / 9.0f), 0.5f, 100.0f);
 	viewMatrix = MMath::lookAt(Vec3(0.0f, 0.0f, 7.5f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 1.0f, 0.0f));
-	modelMatrix.loadIdentity();
+	viewMatrix.print("View");
+	//modelMatrix.loadIdentity();
+	modelMatrixEarth = MMath::rotate(-90.0f, Vec3(0.0f, 1.0f, 0.0f));
+	modelMatrixMoon = MMath::rotate(-90.0f, Vec3(0.0f, 1.0f, 0.0f));
+
 	lightPos = Vec3(8.0f, 4.0f, 0.0f);
 	return true;
 }
@@ -58,7 +74,8 @@ void Scene2g::OnDestroy() {
 	shader->OnDestroy();
 	delete shader;
 
-	delete texture;
+	delete textureEarth;
+	delete textureMoon;
 
 	
 }
@@ -88,13 +105,23 @@ void Scene2g::HandleEvents(const SDL_Event &sdlEvent) {
 }
 
 void Scene2g::Update(const float deltaTime) {
-	sphere->Update(deltaTime);
+	//sphere->Update(deltaTime);
 	//sphere->UpdateOrientation(deltaTime);
-	Matrix4 translation = MMath::translate(sphere->pos);
+	/*Matrix4 translation = MMath::translate(sphere->pos);
 	float radius = 1.0f;
 	Matrix4 scaling = MMath::scale(Vec3(radius, radius, radius));
 	Matrix4 rotation = MMath::toMatrix4(sphere->orientation);
-	modelMatrix = translation * rotation * scaling;
+	modelMatrix = translation * rotation * scaling;*/
+
+	static float totalTime = 0.0f;
+	totalTime += deltaTime * 50;
+	modelMatrixEarth =	MMath::rotate(totalTime, Vec3(0.0f, 1.0f, 0.0f))
+					* MMath::rotate(-90.0f, Vec3(1.0f, 0.0f, 0.0f));
+
+	modelMatrixMoon = MMath::rotate(totalTime, Vec3(0.0f, 1.0f, 0.0f))
+		* MMath::translate(Vec3(3.0f, 0.0f, 0.0f))
+		* MMath::scale(0.25f, 0.25f, 0.25f)
+		* MMath::rotate(-90.0f, Vec3(1.0f, 0.0f, 0.0f));
 
 }
 
@@ -109,12 +136,21 @@ void Scene2g::Render() const {
 	}else{
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+	// Global Render Data
 	glUseProgram(shader->GetProgram());
-	glBindTexture(GL_TEXTURE_2D, texture->getTextureID());
 	glUniformMatrix4fv(shader->GetUniformID("projectionMatrix"), 1, GL_FALSE, projectionMatrix);
 	glUniformMatrix4fv(shader->GetUniformID("viewMatrix"), 1, GL_FALSE, viewMatrix);
-	glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, modelMatrix);
 	glUniform3fv(shader->GetUniformID("lightPos"), 1, lightPos);
+	// Earth Render Data
+	glBindTexture(GL_TEXTURE_2D, textureEarth->getTextureID());
+	glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, modelMatrixEarth);
+	mesh->Render(GL_TRIANGLES);
+	//glBindTexture(GL_TEXTURE_2D, 0); -- No need to unbind since we're binding to another mesh right after
+	
+	
+	// Moon Render Data
+	glBindTexture(GL_TEXTURE_2D, textureMoon->getTextureID());
+	glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, modelMatrixMoon);
 	mesh->Render(GL_TRIANGLES);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glUseProgram(0);

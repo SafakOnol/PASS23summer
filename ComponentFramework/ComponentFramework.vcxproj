@@ -164,7 +164,9 @@
     <None Include="shaders\defaultFrag.glsl" />
     <None Include="shaders\defaultVert.glsl" />
     <None Include="shaders\multiLightPhongFrag.glsl" />
+    <None Include="shaders\multiLightPhongFragAdv.glsl" />
     <None Include="shaders\multiLightPhongVert.glsl" />
+    <None Include="shaders\multiLightPhongVertAdv.glsl" />
     <None Include="shaders\phongFrag.glsl" />
     <None Include="shaders\phongTextureFrag.glsl" />
     <None Include="shaders\phongTextureVert.glsl" />

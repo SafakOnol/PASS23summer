@@ -26,6 +26,7 @@ private:
 	Matrix4 modelMatrixPlatform3;
 	bool drawInWireMode;
 	float platformAngleDegrees = 25.0f;
+	Vec3 gravitationalAccel = Vec3(0.0f, -9.81f, 0.0f);
 
 public:
 	explicit Scene1p();

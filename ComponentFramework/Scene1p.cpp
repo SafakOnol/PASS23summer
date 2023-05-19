@@ -26,11 +26,18 @@ Scene1p::~Scene1p() {
 bool Scene1p::OnCreate() {
 	Debug::Info("Loading assets Scene1p: ", __FILE__, __LINE__);
 
+	
 	// Sphere
 	sphere = new Body();
 	sphere->OnCreate();
-	sphere->angularVel = Vec3(0.0f, 0.0f, -1.0f);
-	
+	sphere->radius = 0.8f;
+	sphere->angularVel = Vec3(0.0f, 0.0f, 0.0f);
+	sphere->pos = Vec3(-4.0f, 0.6f, 0.0f);
+	sphere->force = gravitationalAccel * sphere->mass;
+	//sphere->angularAccel = Vec3(0.0f, 0.0f, -1.5f);
+	sphere->torqueAxis = Vec3(0.0f, 0.0f, -1.0f); // z-axis (right hand rule, rotates clockwise)
+	sphere->torqueMag = sphere->force.y * sphere->radius * sin(-platformAngleDegrees * DEGREES_TO_RADIANS); // angles are in ccw, therefore negative
+	sphere->ApplyTorque(sphere->torqueMag, sphere->torqueAxis);
 	meshSphere = new Mesh("meshes/Sphere.obj");
 	meshSphere->OnCreate();
 
@@ -52,9 +59,9 @@ bool Scene1p::OnCreate() {
 	modelMatrix.loadIdentity();
 
 
-	Vec3 scalingFactorPlatforms(2.0f, 0.1f, 0.1f);
+	Vec3 scalingFactorPlatforms(2.0f, 0.05f, 0.05f);
 	// Platform1
-	Matrix4 translationPlatform1 = MMath::translate(Vec3(-3.0f, -0.5f, 0.0f));	
+	Matrix4 translationPlatform1 = MMath::translate(Vec3(-3.5f, -0.2f, 0.0f));	
 	Matrix4 scalingPlatform1 = MMath::scale(scalingFactorPlatforms);
 	Matrix4 rotationPlatform1 = MMath::rotate(-platformAngleDegrees, Vec3(0.0f, 0.0f, 1.0f));
 	modelMatrixPlatform1 = translationPlatform1 * rotationPlatform1 * scalingPlatform1;
@@ -66,9 +73,9 @@ bool Scene1p::OnCreate() {
 	modelMatrixPlatform2 = translationPlatform2 * rotationPlatform2 * scalingPlatform2 ;
 
 	// Platform3
-	Matrix4 translationPlatform3 = MMath::translate(Vec3(3.0f, -0.5f, 0.0f));
+	Matrix4 translationPlatform3 = MMath::translate(Vec3(3.5f, -0.2f, 0.0f));
 	Matrix4 scalingPlatform3 = MMath::scale(scalingFactorPlatforms);
-	Matrix4 rotationPlatform3 = MMath::toMatrix4(Quaternion());
+	Matrix4 rotationPlatform3 = MMath::rotate(platformAngleDegrees, Vec3(0.0f, 0.0f, 1.0f));
 	modelMatrixPlatform3 = translationPlatform3 * rotationPlatform3 * scalingPlatform3;
 
 
@@ -120,18 +127,20 @@ void Scene1p::HandleEvents(const SDL_Event &sdlEvent) {
 }
 
 void Scene1p::Update(const float deltaTime) {
-	float radius = 0.8f;
+
+	// TODO for assignment 1 
+	// generate the angular acceleration from a torque value
+
 	// we need a radial vector
 	// points perpendicular to surface with a length r
 	// for a flat surface, radial vector points up
 	// for an angle, we derive x = sin(angle), y = cos(angle)
-	Vec3 radialVector = radius * Vec3(	sin(platformAngleDegrees * DEGREES_TO_RADIANS),
-										cos(platformAngleDegrees * DEGREES_TO_RADIANS), 0.0f);
+	Vec3 radialVector = sphere->radius * Vec3(	sin(platformAngleDegrees * DEGREES_TO_RADIANS), cos(platformAngleDegrees * DEGREES_TO_RADIANS), 0.0f);
 	sphere->vel = VMath::cross(sphere->angularVel, radialVector);
 	sphere->Update(deltaTime);
-	sphere->UpdateOrientation(deltaTime);
+
 	Matrix4 translation = MMath::translate(sphere->pos); // TODO - getter & setter this part
-	Matrix4 scaling = MMath::scale(Vec3(radius, radius, radius));
+	Matrix4 scaling = MMath::scale(Vec3(sphere->radius * 0.6f, sphere->radius * 0.6f, sphere->radius * 0.6f));
 	Matrix4 rotation = MMath::toMatrix4(sphere->orientation);
 	modelMatrix = translation * rotation * scaling;
 
@@ -150,6 +159,8 @@ void Scene1p::Render() const {
 	glUseProgram(shader->GetProgram());
 	glUniformMatrix4fv(shader->GetUniformID("projectionMatrix"), 1, GL_FALSE, projectionMatrix);
 	glUniformMatrix4fv(shader->GetUniformID("viewMatrix"), 1, GL_FALSE, viewMatrix);
+
+	// ball
 	glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, modelMatrix);
 	meshSphere->Render(GL_TRIANGLES);
 

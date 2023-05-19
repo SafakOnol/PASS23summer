@@ -147,5 +147,11 @@
     <None Include="shaders\phongTextureVert.glsl">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="shaders\multiLightPhongFragAdv.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\multiLightPhongVertAdv.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -12,8 +12,8 @@ uniform sampler2D samplerTexture;
 
 void main() 
 {
-    vec4 ks = vec4(0.6, 0.3, 0.3, 0.0);
-	vec4 kd = vec4(0.6, 0.6, 0.3, 0.0);
+    vec4 ks = vec4(0.6, 0.6, 0.6, 0.0);
+	vec4 kd = vec4(0.6, 0.6, 0.6, 0.0);
 	vec4 ka = 0.1 * kd;
 	vec4 kt = texture(samplerTexture, textureCoords);
 	float diff = max(dot(vertNormal, lightDir), 0.0);
