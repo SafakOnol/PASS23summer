@@ -1,18 +1,18 @@
-Fri May 19 15:06:43 2023
+Wed Jun 14 10:16:17 2023
 [INFO]: Starting the SceneManager
 [INFO]: OpenGL version: 4.6.0 NVIDIA 527.56
 [INFO]: Graphics card vendor NVIDIA Corporation
 [INFO]: Graphics card name NVIDIA GeForce RTX 3060 Laptop GPU/PCIe/SSE2
 [INFO]: GLSL Version 4.60 NVIDIA
-[INFO]: Created Scene1g: 
-[INFO]: Loading assets Scene1g: 
+[INFO]: Created Scene4g: 
+[INFO]: Loading assets Scene4g: 
 [INFO]: Uniforms:
-"lightPos0" loc:0
-"lightPos1" loc:1
-"modelMatrix" loc:2
-"projectionMatrix" loc:3
+"lightPos" loc:0
+"modelMatrix" loc:1
+"projectionMatrix" loc:2
+"samplerTexture" loc:3
 "viewMatrix" loc:4
 
 [INFO]: Deleting the SceneManager
-[INFO]: Deleting assets Scene1g: 
-[INFO]: Deleted Scene1g: 
+[INFO]: Deleting assets Scene4g: 
+[INFO]: Deleted Scene4g: 

@@ -38,6 +38,7 @@ bool Scene1p::OnCreate() {
 	sphere->torqueAxis = Vec3(0.0f, 0.0f, -1.0f); // z-axis (right hand rule, rotates clockwise)
 	sphere->torqueMag = sphere->force.y * sphere->radius * sin(-platformAngleDegrees * DEGREES_TO_RADIANS); // angles are in ccw, therefore negative
 	sphere->ApplyTorque(sphere->torqueMag, sphere->torqueAxis);
+
 	meshSphere = new Mesh("meshes/Sphere.obj");
 	meshSphere->OnCreate();
 
@@ -135,7 +136,43 @@ void Scene1p::Update(const float deltaTime) {
 	// points perpendicular to surface with a length r
 	// for a flat surface, radial vector points up
 	// for an angle, we derive x = sin(angle), y = cos(angle)
-	Vec3 radialVector = sphere->radius * Vec3(	sin(platformAngleDegrees * DEGREES_TO_RADIANS), cos(platformAngleDegrees * DEGREES_TO_RADIANS), 0.0f);
+	Vec3 radialVector;
+	
+	//= sphere->radius * Vec3(sin(platformAngleDegrees * DEGREES_TO_RADIANS),
+	//											cos(platformAngleDegrees * DEGREES_TO_RADIANS),
+	//											0.0f);
+
+	std::cout << "SPHERE X: " << sphere->pos.x << std::endl;
+	std::cout << "onP1: " << onP1 << std::endl;
+	std::cout << "onP2: " << onP2 << std::endl;
+	std::cout << "onP3: " << onP3 << std::endl;
+
+	if (-5.0f < sphere->pos.x && sphere->pos.x < -2.0f)
+	{
+		onP1 = true;
+		onP2 = false;
+		onP3 = false;
+		radialVector = sphere->radius * Vec3(	sin(platformAngleDegrees * DEGREES_TO_RADIANS),
+												cos(platformAngleDegrees * DEGREES_TO_RADIANS),
+												0.0f);
+	}
+	else if (-2.0f < sphere->pos.x && sphere->pos.x < 2.0f)
+	{
+		onP1 = false;
+		onP2 = true;
+		onP3 = false;
+		radialVector = sphere->radius * Vec3(0.0f, 0.0f, -1.0f);
+	}
+	else if (2.0f < sphere->pos.x && sphere->pos.x < 5.0f)
+	{
+		onP1 = false;
+		onP2 = false;
+		onP3 = true;
+		radialVector = sphere->radius * Vec3(	sin(-platformAngleDegrees * DEGREES_TO_RADIANS),
+												cos(-platformAngleDegrees * DEGREES_TO_RADIANS),
+												0.0f);
+	}	
+
 	sphere->vel = VMath::cross(sphere->angularVel, radialVector);
 	sphere->Update(deltaTime);
 
@@ -143,7 +180,6 @@ void Scene1p::Update(const float deltaTime) {
 	Matrix4 scaling = MMath::scale(Vec3(sphere->radius * 0.6f, sphere->radius * 0.6f, sphere->radius * 0.6f));
 	Matrix4 rotation = MMath::toMatrix4(sphere->orientation);
 	modelMatrix = translation * rotation * scaling;
-
 }
 
 void Scene1p::Render() const {

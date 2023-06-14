@@ -66,6 +66,39 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene1ga.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene1ga2.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2ga.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Trackball.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3g.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene3p.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene0p.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene4g.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -116,6 +149,39 @@
     <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scene1ga.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene1ga2.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2ga.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Trackball.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3g.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3p.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene0p.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene4g.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="GameEngineLog.txt">
@@ -135,22 +201,40 @@
     <None Include="shaders\phongFrag.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shaders\multiLightPhongFrag.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="shaders\multiLightPhongVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="shaders\phongTextureFrag.glsl">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="shaders\phongTextureVert.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shaders\multiLightPhongFragAdv.glsl">
+    <None Include="shaders\PhongFragML.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="shaders\multiLightPhongVertAdv.glsl">
+    <None Include="shaders\PhongFragMLAdv.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\PhongFragMLArray.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\PhongVertML.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\PhongVertMLAdv.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\PhongVertMLArray.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\skyboxVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\skyboxFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\skyboxFragGraphics.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shaders\skyboxVertGraphics.glsl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

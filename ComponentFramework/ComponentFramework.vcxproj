@@ -124,36 +124,58 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Scene0p.cpp" />
     <ClCompile Include="Scene1g.cpp" />
+    <ClCompile Include="Scene1ga.cpp" />
+    <ClCompile Include="Scene1ga2.cpp" />
     <ClCompile Include="Scene1p.cpp" />
     <ClCompile Include="Scene2g.cpp" />
+    <ClCompile Include="Scene2ga.cpp" />
     <ClCompile Include="Scene2p.cpp" />
+    <ClCompile Include="Scene3g.cpp" />
+    <ClCompile Include="Scene3p.cpp" />
+    <ClCompile Include="Scene4g.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Scene0.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Trackball.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Scene0p.h" />
     <ClInclude Include="Scene1g.h" />
+    <ClInclude Include="Scene1ga.h" />
+    <ClInclude Include="Scene1ga2.h" />
     <ClInclude Include="Scene1p.h" />
     <ClInclude Include="Scene2g.h" />
+    <ClInclude Include="Scene2ga.h" />
     <ClInclude Include="Scene2p.h" />
+    <ClInclude Include="Scene3g.h" />
+    <ClInclude Include="Scene3p.h" />
+    <ClInclude Include="Scene4g.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene0.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="tiny_obj_loader.h" />
+    <ClInclude Include="Trackball.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -163,14 +185,20 @@
   <ItemGroup>
     <None Include="shaders\defaultFrag.glsl" />
     <None Include="shaders\defaultVert.glsl" />
-    <None Include="shaders\multiLightPhongFrag.glsl" />
-    <None Include="shaders\multiLightPhongFragAdv.glsl" />
-    <None Include="shaders\multiLightPhongVert.glsl" />
-    <None Include="shaders\multiLightPhongVertAdv.glsl" />
     <None Include="shaders\phongFrag.glsl" />
+    <None Include="shaders\PhongFragML.glsl" />
+    <None Include="shaders\PhongFragMLAdv.glsl" />
+    <None Include="shaders\PhongFragMLArray.glsl" />
     <None Include="shaders\phongTextureFrag.glsl" />
     <None Include="shaders\phongTextureVert.glsl" />
     <None Include="shaders\phongVert.glsl" />
+    <None Include="shaders\PhongVertML.glsl" />
+    <None Include="shaders\PhongVertMLAdv.glsl" />
+    <None Include="shaders\PhongVertMLArray.glsl" />
+    <None Include="shaders\skyboxFrag.glsl" />
+    <None Include="shaders\skyboxFragGraphics.glsl" />
+    <None Include="shaders\skyboxVert.glsl" />
+    <None Include="shaders\skyboxVertGraphics.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

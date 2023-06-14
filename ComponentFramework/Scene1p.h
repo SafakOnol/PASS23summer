@@ -28,6 +28,10 @@ private:
 	float platformAngleDegrees = 25.0f;
 	Vec3 gravitationalAccel = Vec3(0.0f, -9.81f, 0.0f);
 
+	bool onP1;
+	bool onP2;
+	bool onP3;
+
 public:
 	explicit Scene1p();
 	virtual ~Scene1p();

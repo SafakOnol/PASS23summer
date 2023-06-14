@@ -47,7 +47,7 @@ bool Scene2g::OnCreate() {
 	}
 
 	textureEarth = new Texture();
-	textureEarth->LoadImage("textures/evilEye.jpg");
+	textureEarth->LoadImage("textures/earthclouds.jpg");
 
 	textureMoon = new Texture();
 	textureMoon->LoadImage("textures/moon.jpg");
@@ -59,7 +59,7 @@ bool Scene2g::OnCreate() {
 	modelMatrixEarth = MMath::rotate(-90.0f, Vec3(0.0f, 1.0f, 0.0f));
 	modelMatrixMoon = MMath::rotate(-90.0f, Vec3(0.0f, 1.0f, 0.0f));
 
-	lightPos = Vec3(8.0f, 4.0f, 0.0f);
+	lightPos = Vec3(8.0f, 0.0f, 0.0f);
 	return true;
 }
 

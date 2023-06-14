@@ -3,10 +3,17 @@
 #include "Timer.h"
 #include "Window.h"
 #include "Scene0.h"
+#include "Scene0p.h"
 #include "Scene1g.h"
+#include "Scene1ga.h"
+#include "Scene1ga2.h"
 #include "Scene1p.h"
 #include "Scene2g.h"
+#include "Scene2ga.h"
 #include "Scene2p.h"
+#include "Scene3g.h"
+#include "Scene3p.h"
+#include "Scene4g.h"
 
 
 SceneManager::SceneManager(): 
@@ -51,7 +58,7 @@ bool SceneManager::Initialize(std::string name_, int width_, int height_) {
 	}
 
 	/********************************   Default first scene   ***********************/
-	BuildNewScene(SCENE_NUMBER::SCENE1G);
+	BuildNewScene(SCENE_NUMBER::SCENE4G);
 	/********************************************************************************/
 	return true;
 }
@@ -124,6 +131,10 @@ bool SceneManager::BuildNewScene(SCENE_NUMBER scene) {
 		currentScene = new Scene0();
 		status = currentScene->OnCreate();
 		break;
+	case SCENE_NUMBER::SCENE0P:
+		currentScene = new Scene0p();
+		status = currentScene->OnCreate();
+		break;
 
 	case SCENE_NUMBER::SCENE1P:
 		currentScene = new Scene1p();
@@ -135,8 +146,23 @@ bool SceneManager::BuildNewScene(SCENE_NUMBER scene) {
 		status = currentScene->OnCreate();
 		break;
 
+	case SCENE_NUMBER::SCENE1GA:
+		currentScene = new Scene1ga();
+		status = currentScene->OnCreate();
+		break;
+
+	case SCENE_NUMBER::SCENE1GA2:
+		currentScene = new Scene1ga2();
+		status = currentScene->OnCreate();
+		break;
+
 	case SCENE_NUMBER::SCENE2G:
 		currentScene = new Scene2g();
+		status = currentScene->OnCreate();
+		break;
+
+	case SCENE_NUMBER::SCENE2GA:
+		currentScene = new Scene2ga();
 		status = currentScene->OnCreate();
 		break;
 
@@ -145,17 +171,20 @@ bool SceneManager::BuildNewScene(SCENE_NUMBER scene) {
 		status = currentScene->OnCreate();
 		break;
 
-	/*case SCENE_NUMBER::SCENE3G:
+	case SCENE_NUMBER::SCENE3G:
 		currentScene = new Scene3g();
 		status = currentScene->OnCreate();
-		break;*/
+		break;
 
-	/*case SCENE_NUMBER::SCENE3P:
+	case SCENE_NUMBER::SCENE3P:
 		currentScene = new Scene3p();
 		status = currentScene->OnCreate();
-		break;*/
+		break;
 
-
+	case SCENE_NUMBER::SCENE4G:
+		currentScene = new Scene4g();
+		status = currentScene->OnCreate();
+		break;
 
 	default:
 		Debug::Error("Incorrect scene number assigned in the manager", __FILE__, __LINE__);

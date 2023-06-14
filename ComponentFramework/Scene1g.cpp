@@ -26,7 +26,7 @@ bool Scene1g::OnCreate() {
 	mesh = new Mesh("meshes/Sphere.obj");
 	mesh->OnCreate();
 
-	shader = new Shader("shaders/multiLightPhongVert.glsl", "shaders/multiLightPhongFrag.glsl");
+	shader = new Shader("shaders/PhongVertML.glsl", "shaders/PhongFragML.glsl");
 	if (shader->OnCreate() == false) {
 		std::cout << "Shader failed ... we have a problem\n";
 	}

@@ -15,9 +15,13 @@ public:
 private:
 	enum class SCENE_NUMBER {
 		SCENE0 = 0,
+		SCENE0P,
 		SCENE1G,
+		SCENE1GA,
+		SCENE1GA2,
 		SCENE1P,
 		SCENE2G,
+		SCENE2GA,
 		SCENE2P,
 		SCENE3G,
 		SCENE3P,

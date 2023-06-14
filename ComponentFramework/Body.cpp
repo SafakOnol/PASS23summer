@@ -65,7 +65,7 @@ void Body::ApplyTorque(float torqueMag, Vec3 torqueAxis)
 {
 	// τ = r × F
 	// mag τ = r F sin(θ)
-	float torqueMagModifier = torqueMag / 9.81;
+	float torqueMagModifier = torqueMag / 9.81; // FIGURE OUT WHY???
 	torque = torqueMagModifier * torqueAxis;
 	std::cout << "torque: (" << torque.x << " ," << torque.y << " ," << torque.z << ")" << std::endl;
 

@@ -40,6 +40,10 @@ public:
 	float rotationalInertiaConstant;
 	float radius; // assuming the body is a sphere
 	float mass;
+
+	// Modal Matrix of object
+	Matrix4 modelMatrix;
+
 private: /// Graphics stuff 
 	Mesh *mesh;
 	Texture *texture;
@@ -61,8 +65,7 @@ public:
 	// Utility
 	//Matrix3 SetBasicRotationalInertia(float rotationalInertiaConstant);
 	void GetBasicRotationalInertia();
-	
-	
+	Matrix4 GetModelMatrix() { return modelMatrix; }	
 };
 
 
