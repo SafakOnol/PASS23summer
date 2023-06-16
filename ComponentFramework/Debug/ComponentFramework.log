@@ -1,12 +1,1 @@
-﻿  Scene4g.cpp
-C:\GameDev\MathLibrary\include\MMath.h(18,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\MMath.h(19,16): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\MMath.h(49,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(86,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(87,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(88,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(89,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(90,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(91,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\GameDev\MathLibrary\include\QMath.h(103,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  ComponentFramework.vcxproj -> C:\Users\onols\Desktop\HUMBER\001_PASS_SUMMER_2023\ComponentFramework23.0.0\Debug\ComponentFramework.exe
+﻿

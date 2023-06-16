@@ -14,6 +14,7 @@
 #include "Scene3g.h"
 #include "Scene3p.h"
 #include "Scene4g.h"
+#include "Scene4p.h"
 
 
 SceneManager::SceneManager(): 
@@ -183,6 +184,11 @@ bool SceneManager::BuildNewScene(SCENE_NUMBER scene) {
 
 	case SCENE_NUMBER::SCENE4G:
 		currentScene = new Scene4g();
+		status = currentScene->OnCreate();
+		break;
+
+	case SCENE_NUMBER::SCENE4P:
+		currentScene = new Scene4p();
 		status = currentScene->OnCreate();
 		break;
 

@@ -1,4 +1,4 @@
-Wed Jun 14 10:16:17 2023
+Fri Jun 16 10:47:13 2023
 [INFO]: Starting the SceneManager
 [INFO]: OpenGL version: 4.6.0 NVIDIA 527.56
 [INFO]: Graphics card vendor NVIDIA Corporation
@@ -7,11 +7,9 @@ Wed Jun 14 10:16:17 2023
 [INFO]: Created Scene4g: 
 [INFO]: Loading assets Scene4g: 
 [INFO]: Uniforms:
-"lightPos" loc:0
-"modelMatrix" loc:1
-"projectionMatrix" loc:2
-"samplerTexture" loc:3
-"viewMatrix" loc:4
+"projectionMatrix" loc:0
+"rotationMatrix" loc:1
+"skybox" loc:2
 
 [INFO]: Deleting the SceneManager
 [INFO]: Deleting assets Scene4g: 

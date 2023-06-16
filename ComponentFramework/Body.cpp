@@ -28,12 +28,21 @@ Body::~Body() {}
 void Body::Update(float deltaTime) 
 {
 	UpdateAngularVel(deltaTime);
-	//ApplyForce(force); // gravity
-	pos += vel * deltaTime + 0.5f * accel * deltaTime * deltaTime;
-	vel += accel * deltaTime;
+	UpdatePos(deltaTime);
+	UpdateVel(deltaTime);
 	UpdateOrientation(deltaTime);
 	//ApplyTorque(torqueMag, torqueAxis);
 	
+}
+
+void Body::UpdatePos(float deltaTime)
+{
+	pos += vel * deltaTime + 0.5f * accel * deltaTime * deltaTime;
+}
+
+void Body::UpdateVel(float deltaTime)
+{
+	vel += accel * deltaTime;
 }
 
 void Body::ApplyForce(Vec3 force) {

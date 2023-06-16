@@ -52,6 +52,8 @@ public:
 	bool OnCreate();
 	void OnDestroy();
 	void Update(float deltaTime);
+	void UpdatePos(float deltaTime);
+	void UpdateVel(float deltaTime);
 	void Render() const;
 
 	// Physics

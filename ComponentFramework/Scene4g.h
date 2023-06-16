@@ -4,7 +4,7 @@
 #include "Vector.h"
 #include <Matrix.h>
 #include "Trackball.h"
-#include "Camera.h"
+#include "CameraSkybox.h"
 
 using namespace MATH;
 
@@ -18,19 +18,18 @@ class Texture;
 class Scene4g : public Scene {
 private:
 	
-	Body* sphere;
+	/*Body* sphere;
 	Shader* sphereShader;
 	Mesh* sphereMesh;
-	Texture* sphereTexture;
-	Matrix4 sphereModelMatrix;
+	Matrix4 sphereModelMatrix;*/
 
 	Matrix4 projectionMatrix;
 	Matrix4 viewMatrix;
 	Matrix4 cameraMatrix;
 	bool drawInWireMode;
-	Vec3 lightPos;
+	//Vec3 lightPos;
 	Trackball trackball;
-	Camera* camera;
+	CameraSkybox* cameraSkybox;
 
 public:
 	explicit Scene4g();

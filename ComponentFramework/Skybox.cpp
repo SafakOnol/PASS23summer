@@ -144,5 +144,4 @@ void Skybox::Render() const
 	//glBindTexture(GL_TEXTURE_2D, 0);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	//glUseProgram(0);
 }
