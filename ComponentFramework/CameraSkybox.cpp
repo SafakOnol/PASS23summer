@@ -6,19 +6,12 @@ CameraSkybox::CameraSkybox()
 {
 	projectionMatrix = Matrix4();
 	viewMatrix = Matrix4();
-	trackball = new Trackball();
+	camTrackball = new Trackball();
 }
 
 CameraSkybox::~CameraSkybox()
 {
-	if (trackball) delete trackball;
-}
-
-void CameraSkybox::HandleEvents(const SDL_Event& sdlEvent)
-{
-	trackball->HandleEvents(sdlEvent);
-	rotationMatrix = trackball->getMatrix4();
-	viewMatrix *= rotationMatrix;
+	if (camTrackball) delete camTrackball;
 }
 
 
@@ -47,9 +40,18 @@ void CameraSkybox::SetProjectionMatrix(float fovy, float near, float far)
 	projectionMatrix = MMath::perspective(fovy, aspectRatio, near, far);
 }
 
+
 void CameraSkybox::LookAt(const Vec3& eye, const Vec3& at, const Vec3& up)
 {
 	viewMatrix = MMath::lookAt(eye, at, up);
+}
+
+
+void CameraSkybox::HandleEvents(const SDL_Event& sdlEvent)
+{
+	camTrackball->HandleEvents(sdlEvent);
+	skyboxViewMatrix = camTrackball->getMatrix4();
+	//viewMatrix *= rotationMatrix;
 }
 
 
@@ -59,7 +61,7 @@ void CameraSkybox::Render() const
 
 	glUseProgram(skybox->GetShader()->GetProgram());
 	glUniformMatrix4fv(skybox->GetShader()->GetUniformID("projectionMatrix"), 1, GL_FALSE, projectionMatrix);
-	glUniformMatrix4fv(skybox->GetShader()->GetUniformID("rotationMatrix"), 1, GL_FALSE, rotationMatrix);
+	glUniformMatrix4fv(skybox->GetShader()->GetUniformID("skyboxViewMatrix"), 1, GL_FALSE, skyboxViewMatrix); // viewmatrix changed to rotation matrix for 
 
 	skybox->Render();
 

@@ -14,9 +14,9 @@ class CameraSkybox
 private:
 	Matrix4 projectionMatrix;
 	Matrix4 viewMatrix;
-	Matrix4 rotationMatrix;
+	Matrix4 skyboxViewMatrix;
 	Matrix4 translationMatrix;
-	Trackball* trackball;
+	Trackball* camTrackball;
 	Skybox* skybox;
 
 public:
@@ -32,5 +32,6 @@ public:
 
 	const Matrix4 GetProjectionMatrix() const { return projectionMatrix; }
 	const Matrix4 GetViewMatrix() const { return viewMatrix; }
+	Skybox* GetSkybox() { return skybox; }
 };
 

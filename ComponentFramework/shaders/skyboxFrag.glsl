@@ -4,11 +4,10 @@
 
 layout(location = 0) in vec3 texCoord;
 
-uniform samplerCube skyboxTexture;
-
 layout(location = 0) out vec4 fragColor;
 
+uniform samplerCube skyboxTexture;
+
 void main() {	
-	fragColor = texture(skyboxTexture, texCoord);
-	
+	fragColor = texture(skyboxTexture, texCoord);	
 }

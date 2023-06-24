@@ -96,7 +96,22 @@ void Scene4p::HandleEvents(const SDL_Event &sdlEvent) {
     case SDL_KEYDOWN:
 		switch (sdlEvent.key.keysym.scancode) {
 			case SDL_SCANCODE_W:
-				drawInWireMode = !drawInWireMode;
+				// tentacleSpheres[i]->pos += Vec3 (0, 0, -translationUnit); // move inwards
+				break;
+			case SDL_SCANCODE_S:
+				// tentacleSpheres[i]->pos += Vec3 (0, 0, translationUnit); // move outwards
+				break;
+			case SDL_SCANCODE_D:
+				// tentacleSpheres[i]->pos += Vec3 (0, translationUnit, 0); // move left
+				break;
+			case SDL_SCANCODE_A:
+				// tentacleSpheres[i]->pos += Vec3 (0, translationUnit, 0); // move right
+				break;
+			case SDL_SCANCODE_Q:
+				// tentacleSpheres[i]->pos += Vec3 (0, translationUnit, 0); // move up
+				break;
+			case SDL_SCANCODE_E:
+				// tentacleSpheres[i]->pos += Vec3 (0, translationUnit, 0); // move down
 				break;
 		}
 		break;
@@ -117,6 +132,9 @@ void Scene4p::HandleEvents(const SDL_Event &sdlEvent) {
 
 void Scene4p::Update(const float deltaTime) {
 	
+	//Vec3 dragForce = -0.5 * tentacleSpheres->vel;
+
+
 	for (Body* tentacleSphere : tentacleSpheres)
 	{
 		tentacleSphere->ApplyForce(gravitationalAccel * tentacleSphere->mass);

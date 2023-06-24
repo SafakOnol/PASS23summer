@@ -111,7 +111,7 @@ bool Skybox::OnCreate()
 		Debug::Error("Can't load skyboxMesh", __FILE__, __LINE__);
 	}
 
-	skyboxShader = new Shader("shaders/skyboxVertGraphics.glsl", "shaders/skyboxFragGraphics.glsl");
+	skyboxShader = new Shader("shaders/skyboxVert.glsl", "shaders/skyboxFrag.glsl");
 	if (skyboxShader->OnCreate() == false)
 	{
 		Debug::Error("Can't load shader", __FILE__, __LINE__);

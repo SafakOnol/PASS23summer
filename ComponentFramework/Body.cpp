@@ -1,12 +1,12 @@
 ﻿#include "Body.h"
 Body::Body(): 
-	pos{},
-	vel{},
-	accel{},
-	mass{1.0f},
-	torque{0.0f, 0.0f, 0.0f},
-	mesh{nullptr},
-	texture{nullptr} 
+	pos		{},
+	vel		{},
+	accel	{},
+	mass	{1.0f},
+	torque	{0.0f, 0.0f, 0.0f},
+	mesh	{nullptr},
+	texture	{nullptr} 
 {
 	// Assume the body is a solid sphere
 	// radius = 0.5;
@@ -27,10 +27,10 @@ Body::~Body() {}
 
 void Body::Update(float deltaTime) 
 {
-	UpdateAngularVel(deltaTime);
-	UpdatePos(deltaTime);
-	UpdateVel(deltaTime);
-	UpdateOrientation(deltaTime);
+	UpdateAngularVel	(deltaTime);
+	UpdatePos			(deltaTime);
+	UpdateVel			(deltaTime);
+	UpdateOrientation	(deltaTime);
 	//ApplyTorque(torqueMag, torqueAxis);
 	
 }
@@ -47,6 +47,43 @@ void Body::UpdateVel(float deltaTime)
 
 void Body::ApplyForce(Vec3 force) {
 	accel = force / mass;
+}
+
+void Body::StraightlineConstraint(float deltaTime, float slope, float yIntercept)
+{
+	float positionConstraint = -slope * pos.x + pos.y - yIntercept;
+
+	float JV = -slope * vel.x + vel.y; // calculate the Jacobian by taking a derivative of the pos constraint
+
+	// Tune JV to stabilize the simulation
+	float bamgarteStabilization = 0.1f;
+	float bias = bamgarteStabilization * positionConstraint / deltaTime;
+
+	// effective mass is the JM^-1JT 
+	float effectiveMass = slope * slope / mass + 1.0f / mass;
+
+	float langrangianMultiplier = (-JV - bias) / effectiveMass;
+
+	Vec3 JT (-slope, 1, 0); // JT = Transpose of the Jabcobian
+
+	vel += (JT / mass) * langrangianMultiplier;
+}
+
+void Body::CircleConstraint(float deltaTime, Vec3 circleCentre, float constraintRadius)
+{
+	float positionConstraint =
+			(pos.x - circleCentre.x)	*	(pos.x - circleCentre.x)
+		+	(pos.y - circleCentre.y)	*	(pos.y - circleCentre.y)
+		-	constraintRadius			*	constraintRadius;
+
+	//
+
+	Vec3 JT	(	2.0f * pos.x - 2.0f * circleCentre.x,
+				2.0f * pos.y - 2.0f * circleCentre.y,
+				0.0f);
+
+	//vel += (JT / mass) * langrangianMultiplier;
+
 }
 
 void Body::UpdateOrientation(float deltaTime)

@@ -59,6 +59,10 @@ public:
 	// Physics
 	void ApplyForce(Vec3 force);
 	void setAccel(const Vec3& accel_) { accel = accel_; }
+	void StraightlineConstraint(float deltaTime, float slope, float yIntercept);
+	void CircleConstraint(float deltaTime, Vec3 circleCentre, float constraint);
+	//void VelocityConstraint(float deltaTime, );
+
 	// Update Methods
 	void UpdateOrientation(float deltaTime);
 	void UpdateAngularVel(float deltaTime);

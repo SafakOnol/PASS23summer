@@ -18,17 +18,17 @@ class Texture;
 class Scene4g : public Scene {
 private:
 	
-	/*Body* sphere;
+	Body* sphere;
 	Shader* sphereShader;
 	Mesh* sphereMesh;
-	Matrix4 sphereModelMatrix;*/
+	Matrix4 sphereModelMatrix;
 
 	Matrix4 projectionMatrix;
 	Matrix4 viewMatrix;
 	Matrix4 cameraMatrix;
 	bool drawInWireMode;
 	//Vec3 lightPos;
-	Trackball trackball;
+	//Trackball* sceneTrackball;
 	CameraSkybox* cameraSkybox;
 
 public:

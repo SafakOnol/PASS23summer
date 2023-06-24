@@ -199,6 +199,8 @@
     <None Include="shaders\PhongVertML.glsl" />
     <None Include="shaders\PhongVertMLAdv.glsl" />
     <None Include="shaders\PhongVertMLArray.glsl" />
+    <None Include="shaders\reflectionFrag.glsl" />
+    <None Include="shaders\reflectionVert.glsl" />
     <None Include="shaders\skyboxFrag.glsl" />
     <None Include="shaders\skyboxFragGraphics.glsl" />
     <None Include="shaders\skyboxVert.glsl" />
